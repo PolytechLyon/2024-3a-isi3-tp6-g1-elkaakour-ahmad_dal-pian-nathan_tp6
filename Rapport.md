@@ -16,6 +16,13 @@ Nous avons créé la classe TagAlongBike qui représente un vélo parental traî
 
 ## Exercices 2
 
+Le patron de conception utilisé par la méthode **getVelocity()** pour parcourir les composants d'un véhicule est le patron de conception itérateur.
+L'avantage de ce patron est qu'il permet de parcourir les éléments d'une collection sans exposer la structure interne de la collection.
+
+Après la modification de la structure de données utilisée pour stocker les composants d'un véhicule de Set à List, il n'est pas nécessaire de modifier la réalisation de la méthode **getVelocity()** car cette méthode parcourt simplement les composants du véhicule à l'aide d'un itérateur, et cela fonctionne de la même manière indépendamment de la structure de données utilisée pour stocker les composants.
+
+
+
 ## Exercices 3
 
 ## Exercices 4
