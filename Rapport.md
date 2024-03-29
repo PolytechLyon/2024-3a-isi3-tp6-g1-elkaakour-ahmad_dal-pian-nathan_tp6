@@ -85,6 +85,22 @@ Le design pattern singleton permet d'assurer une unique instance de la classe. T
 
 ## Exercices 7
 
+Pour appliquer le design pattern **Decorator**, nous avons créé la classe abstraite `LoggerDecorator`(équivalent de la classe Decorater), qui implémente l'interface `Logger`, 
+et la classe `TimestampedLoggerDecorator`(équivalent du DecoraterConcret) qui étend la classe `LoggerDecorator`. 
+
+La classe `LoggerDecorator` possède un attribut logger de type `Logger`. 
+
+Tandis que la classe `TimestampedLoggerDecorator` implément la fonction **log** hérité :
+
+```java
+public void log(String format, Object... args) {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+        String date = dateFormat.format(new Date());
+        String updatedFormat = date + " : " + format;
+        logger.log(updatedFormat, args);
+    }
+```
+
 ## Exercices 8
 
 
