@@ -103,4 +103,41 @@ public void log(String format, Object... args) {
 
 ## Exercices 8
 
+La classe `Context` suit un design pattern **Adapter** vis à vis de la classe `ServiceLoader`.
 
+On peut instancier un nouveau `Bike` sans utiliser *new* comme cela : 
+```java 
+Bike bike = Context.inject(Bike.class);
+```
+Pour instancier un `TagAlongBike` à la place d'un `SimpleBike` il suffit de remplacer la ligne "fr.polytech.sim.cycling.SimpleBike" dans `fr.polytech.sim.cycling.Bike` par "fr.polytech.sim.cycling.TagAlongBike".
+
+Il peut y avoir plusieurs lignes dans le fichier `fr.polytech.sim.cycling.Bike`.
+Cependant, seul la première ligne est instancié avec la fonction **inject** de `Context`.
+
+## Exercices 9
+
+Le patron de conception proposé par cette méthode et le design patter Iterator.
+
+```java
+public static <T> Iterator<T> injectAll(Class<T> klass) {
+        return ServiceLoader.load(klass).iterator();
+    }
+```
+
+```java
+Iterator<Bike> bikeIterator = Context.injectAll(Bike.class);
+
+Bike bike;
+
+if (bikeIterator.hasNext()) {
+    bike = bikeIterator.next();
+    this.logger.log("Bike's speed %.2f Km/h.", bike.getVelocity());
+    this.logger.log("Bike's mass %.2f Kg.", bike.getMass());
+}
+
+if (bikeIterator.hasNext()) {
+    bike = bikeIterator.next();
+    this.logger.log("TagAlongBike's speed %.2f Km/h.", bike.getVelocity());
+    this.logger.log("TagAlongBike's mass %.2f Kg.", bike.getMass());
+}
+```
