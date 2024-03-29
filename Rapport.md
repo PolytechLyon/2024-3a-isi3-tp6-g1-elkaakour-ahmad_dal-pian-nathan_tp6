@@ -26,7 +26,6 @@ Après la modification de la structure de données utilisée pour stocker les co
 
 ## Exercices 3
 
-*Expliquez, en quelques lignes, les étapes de la réalisation de ce patron dans le code.*
 
 Pour réaliser ce pattern, il faut tout d'abord rendre le constructeur de la classe **Clock** *privé*, puis créer un attribut static *instance* qui sera l'instance de notre classe **Clock** commune à toute les classes.
 Ensuite, il faut une méthode static **getInstance()** qui retourne l'instance commune et la créer si ce n'est pas déjà fait.
@@ -48,9 +47,41 @@ private final Clock clock = Clock.getInstance();
 
 ## Exercices 4
 
+Les classes `Bike` et `wheel` ne sont pas dans le même paquetage.
+Le type de dépendace est une association dirigée de `Wheel` vers `Bike`.
+Cette dépendance n'adhère pas aux bonnes pratiques de conception, car ces deux classes ne sont pas dans le même paquetage.
+
+Dans la fonction **getVelocity()** de la classe `Wheel`, on utilise la fonction **getPush()** de la classe `Bike`.
+Il y a bien une abstraction qui isole cette fonctionnalité et c'est la classe `Vehicle` qui se trouve dans le même paquetage que `Wheel`.
+
+Nous avons eu besoin de modifier uniquement la classe `Wheel` en remplaçant l'attribut *drive* de la classe `Bike` en une instance de la classe `Vehicle`.
+
 ## Exercices 5
 
+Pour réaliser le patron de conception de méthode, comme les deux classes `FileLogger` et `ConsoleLogger` qui héritent de la classe abstraite `NamedLogger`, implémentent la méthode commune **log(String format, Object... args)**, nous avons créée une méthode **Writelog()** abstraite dans `NamedLogger`, et implémentée  dans ces deux classes afin d'éviter la duplication de code.
+
+Dans `ConosleLogger`
+```java
+protected void writeLog(String message) {
+        System.out.print(message);
+    }
+```
+Dans `FileLogger`
+```java
+protected void writeLog(String message) {
+        try (FileWriter fileWriter = new FileWriter(FILE_NAME, true)) {
+            fileWriter.write(message);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+```
+
 ## Exercices 6
+
+Pour centraliser le choix de réalisation de l'interface `Logger`, nous avons créée une classe `LoggerFactory` qui contient une méthode **getLogger()** afin de retourner une instance de la classe `Logger`.
+
+Le design pattern singleton permet d'assurer une unique instance de la classe. Tandis que le design pattern Factory permet d'instancier des instances d'une classe unique.
 
 ## Exercices 7
 
