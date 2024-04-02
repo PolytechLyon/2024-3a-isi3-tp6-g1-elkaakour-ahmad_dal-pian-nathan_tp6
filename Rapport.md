@@ -103,7 +103,7 @@ public void log(String format, Object... args) {
 
 ## Exercices 8
 
-La classe `Context` suit un design pattern **Adapter** vis à vis de la classe `ServiceLoader`.
+La classe `Context` suit un design pattern **Facade** vis à vis de la classe `ServiceLoader`.
 
 On peut instancier un nouveau `Bike` sans utiliser *new* comme cela : 
 ```java 
