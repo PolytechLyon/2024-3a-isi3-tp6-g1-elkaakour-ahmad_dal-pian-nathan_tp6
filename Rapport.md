@@ -129,15 +129,10 @@ Iterator<Bike> bikeIterator = Context.injectAll(Bike.class);
 
 Bike bike;
 
-if (bikeIterator.hasNext()) {
+while (bikeIterator.hasNext())
+{
     bike = bikeIterator.next();
-    this.logger.log("Bike's speed %.2f Km/h.", bike.getVelocity());
-    this.logger.log("Bike's mass %.2f Kg.", bike.getMass());
-}
-
-if (bikeIterator.hasNext()) {
-    bike = bikeIterator.next();
-    this.logger.log("TagAlongBike's speed %.2f Km/h.", bike.getVelocity());
-    this.logger.log("TagAlongBike's mass %.2f Kg.", bike.getMass());
+    this.logger.log(bike.getClass().getSimpleName() + "'s speed %.2f Km/h.", bike.getVelocity());
+    this.logger.log(bike.getClass().getSimpleName() + "'s mass %.2f Kg.", bike.getMass());
 }
 ```
